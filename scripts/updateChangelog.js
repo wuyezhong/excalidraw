@@ -23,7 +23,7 @@ const headerForType = {
 const badCommits = [];
 const getCommitHashForLastVersion = async () => {
   try {
-    const commitMessage = `"release @excalidraw/excalidraw@${lastVersion}"`;
+    const commitMessage = `"release @hx/excalidraw@${lastVersion}"`;
     const { stdout } = await exec(
       `git log --format=format:"%H" --grep=${commitMessage}`,
     );
@@ -61,7 +61,7 @@ const getLibraryCommitsSinceLastRelease = async () => {
       if (existingChangeLog.includes(prNumber)) {
         return;
       }
-      const prMarkdown = `[#${prNumber}](https://github.com/excalidraw/excalidraw/pull/${prNumber})`;
+      const prMarkdown = `[#${prNumber}](https://github.com/wuyezhong/excalidraw/pull/${prNumber})`;
       const messageWithPRLink = messageWithCapitalizeFirst.replace(
         /\(#[0-9]*\)/,
         prMarkdown,

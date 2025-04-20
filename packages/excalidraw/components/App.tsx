@@ -720,6 +720,7 @@ class App extends React.Component<AppProps, AppState> {
       excalidrawAPI,
       viewModeEnabled = false,
       zenModeEnabled = false,
+      forceMobileMode = false,
       gridModeEnabled = false,
       objectsSnapModeEnabled = false,
       theme = defaultAppState.theme,
@@ -732,6 +733,7 @@ class App extends React.Component<AppProps, AppState> {
       ...this.getCanvasOffsets(),
       viewModeEnabled,
       zenModeEnabled,
+      forceMobileMode,
       objectsSnapModeEnabled,
       gridModeEnabled: gridModeEnabled ?? defaultAppState.gridModeEnabled,
       name,
@@ -2414,6 +2416,12 @@ class App extends React.Component<AppProps, AppState> {
   };
 
   private isMobileBreakpoint = (width: number, height: number) => {
+    // 如果配置了强制移动模式，优先使用该配置
+    if (this.state.forceMobileMode !== null) {
+      return this.state.forceMobileMode;
+    }
+
+    // 否则使用原有的尺寸检测逻辑
     return (
       width < MQ_MAX_WIDTH_PORTRAIT ||
       (height < MQ_MAX_HEIGHT_LANDSCAPE && width < MQ_MAX_WIDTH_LANDSCAPE)

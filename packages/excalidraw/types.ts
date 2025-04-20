@@ -428,6 +428,14 @@ export interface AppState {
   croppingElementId: ExcalidrawElement["id"] | null;
 
   searchMatches: readonly SearchMatch[];
+  
+  /**
+   * 控制是否强制使用移动模式
+   * - null: 自动检测 (默认)
+   * - true: 强制移动模式
+   * - false: 强制桌面模式
+   */
+  forceMobileMode: boolean | null;
 }
 
 type SearchMatch = {
@@ -555,6 +563,7 @@ export interface ExcalidrawProps {
   langCode?: Language["code"];
   viewModeEnabled?: boolean;
   zenModeEnabled?: boolean;
+  forceMobileMode?: boolean;
   gridModeEnabled?: boolean;
   objectsSnapModeEnabled?: boolean;
   libraryReturnUrl?: string;
